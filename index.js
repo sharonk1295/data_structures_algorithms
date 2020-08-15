@@ -35,14 +35,23 @@ const sum = (num1, num2) => {
 console.log(sum(5,7))
 
 // ** Write a function that takes a string and returns counts of each character in the string
+// const countChar = (str) => {
+//     let myArr = str.toLowerCase().split("") // to account for when user inputs uppercase letters
+//     let freqChar = {};
+//     for (let char of myArr) {
+//         // console.log(char)
+//         freqChar[char] ? freqChar[char] ++ : freqChar[char] = 1
+//     }
+//     return freqChar;
+// }
+
 const countChar = (str) => {
-    let myArr = str.toLowerCase().split("") // to account for when user inputs uppercase letters
-    let freqChar = {};
-    for (let char of myArr) {
-        // console.log(char)
-        freqChar[char] ? freqChar[char] ++ : freqChar[char] = 1
+    str = str.toLowerCase();
+    let result = {};
+    for (let char of str) {
+        result[char] ? result[char]++ : result[char] = 1;
     }
-    return freqChar;
+    return result;
 }
 
 console.log(countChar("sharon"))
