@@ -78,9 +78,40 @@ console.log(countChar("suNny"))
 
 // if an obj does not have a property (look before the dot in dot notation) then it is null or undefined (not pointing at an undefined value though) and then if you try to access another property on top of that undefined property, it immediately throws an error.
 
-const music = {
-    taste: 'classical'
-}
-const onion = music
-onion.taste = 'umami'
-console.log(music.taste)
+// const music = {
+//     taste: 'classical'
+// }
+// const onion = music
+// onion.taste = 'umami'
+// console.log(music.taste)
+
+// ===== PROTOTYPES ====== // 
+// relationship, not a special "thing" in JS
+// an obj may point at another obj as its prototype
+// JS will search for the property on the obj, then on its prototype, then on that obj's prototype and so on. UNDEFINED if it runs out of prototypes to check and still hasn't found the property
+
+// the sequence of objects to "visit" is the object's PROTOTYPE CHAIN, but it cannot be circular
+
+// if the property exists in the obj, end there - don't need to check the prototype
+
+// let human = {
+//     teeth: 32
+// }
+// let gwen = {
+//     __proto__:human,
+//     age: 19
+// }
+
+// console.log(human.age) // undefined
+// console.log(gwen.age) // 19
+// console.log(human.teeth) // 32
+// console.log(gwen.teeth) // 32
+// console.log(human.tail) // undefined
+// console.log(gwen.tail) // undefined
+
+// All objects created with just {} have a special __proto__ wire set to a default Object Prototype
+// The Object Prototype has its own built in properties in the JS engine, like hasOwnProperty, toString, etc. (methods you've been using all along!!)
+let obj = {}
+console.log(obj.__proto__);
+
+// PROTOTYPE POLLUTION - when you mutate a shared prototype
