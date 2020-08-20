@@ -1,4 +1,7 @@
 // ========= BINARY SEARCH PRACTICE ========= //
+// binary search works only on sorted arrays
+// divide and conquer
+
 
 // 1. Write a function that accepts a sorted array (assume it's sorted) and a value (assume we are wokring only with numbers for now) and returns the index at which the value exists
 // 2. Create a left pointer at the start of the array, and a right pointer at the end of the array (both will be variables)
