@@ -18,6 +18,39 @@
 // 4. if the value in arr1 is larger than the value in arr2, push the value in arr2 into the results arr and move on to the next value in arr2
 // 5. Once we finish working with one arr, just push in all the remaining values from the other arr
 
+// const merge = (arr1, arr2) => {
+//     let results = [];
+//     let i = 0;
+//     let j = 0;
+//     while (i < arr1.length && j < arr2.length) {
+//         if (arr1[i] < arr2[j]) {
+//             results.push(arr1[i]);
+//             i++;
+//         } else {
+//             results.push(arr2[j]);
+//             j++;
+//         }
+//     }
+//     while (i < arr1.length) { // push in the remaining values of this unfinished array into results
+//         results.push(arr1[i]);
+//         i++;
+//     }
+//     while (j < arr2.length) { // push in the remaining values of this unfinished array into results
+//         results.push(arr2[j]);
+//         j++;
+//     }
+//     return results;
+// }
+
+// console.log(merge([1,10,50], [2,14,99,100]))
+
+
+// PSEUDOCODE FOR MERGE SORTING 
+// will require recursion!!!
+// 1. Break up the array into halves until you have arrays that are empty or have one element
+// 2. Once you have smaller sorted arrays, merge those arrays with other sorted arrays until you are back at the full length of the array
+// 3. Then, return that merged and sorted arr!!
+
 const merge = (arr1, arr2) => {
     let results = [];
     let i = 0;
@@ -42,11 +75,10 @@ const merge = (arr1, arr2) => {
     return results;
 }
 
-console.log(merge([1,10,50], [2,14,99,100]))
-
-
-// PSEUDOCODE FOR MERGE SORTING 
-// will require recursion!!!
-// 1. Break up the array into halves until you have arrays that are empty or have one element
-// 2. Once you have smaller sorted arrays, merge those arrays with other sorted arrays until you are back at the full length of the array
-// 3. Then, return that merged and sorted arr!!
+const mergeSort = (arr) => { // keep dividing array into halves until you get arrays of 0 or 1 element
+    if (arr.length <=1) return arr;
+    let mid = Math.floor(arr.length/2);
+    let left = mergeSort(arr.slice(0, mid));
+    let right = mergeSort(arr.slice(mid));
+    return merge(left, right); // then merge the single element arrays into ong big sorted array by calling the above function
+}
