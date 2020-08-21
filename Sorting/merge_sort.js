@@ -5,6 +5,13 @@
 // Works by decomposing an arr into smaller arrs of 0 or 1 element, and then building back up a newly sorted array
 // cut the array in half, then keep dividing those arrays into halves until you have arrays with only 0 or 1 element (single element arrays). As you merge them back together, you sort them. Sorting already sorted arrays is EASY and single element arrays are SORTED!! so just compare their values then merge! And keep going on
 
+// ** BIG O
+// time -> for best, avg, worst case scenarios it is O(n log n)
+// BECAUSE while dividing, it takes O(log n) decompositions to get to single element arrays. You have to keep halving the arrays until you get to single element arrays. If you have 8 items, you have to count the number of times you have to split it up, which is 3 bc 2^3 is 8. So as n grows, the number of times you have to split it up grows O(log n) times. THEN, for exmaple, when you finally are down to merging the 2 final sorted arrays into one, you are doing O(N) comparisons. So if you have 1,000 items in the array, there have to be roughly 1,000 comparisons to be made. So as N grows, the merge function itself, not the mergesort, just the merge, has a time complexity of O(N).
+
+// space -> O(n)
+// the larger the arr, the more additional space you need for the arrays you're creating in the functions
+
 // First, start by writing a func that merges 2 SORTED arrays (in same order, like both are sorted in ASC order)
 // should be O(n + m) time and space complexity n= arr1, m = arr2. basically meaning you should just visit each item one time in each array
 // the arrays are usually same length or 1 element different in real life
@@ -78,7 +85,9 @@ const merge = (arr1, arr2) => {
 const mergeSort = (arr) => { // keep dividing array into halves until you get arrays of 0 or 1 element
     if (arr.length <=1) return arr;
     let mid = Math.floor(arr.length/2);
-    let left = mergeSort(arr.slice(0, mid));
+    let left = mergeSort(arr.slice(0, mid)); // until left is resolved, right isn't even run yet because theres a bunch of values waiting on the call stack until left is fully done with the recursion
     let right = mergeSort(arr.slice(mid));
-    return merge(left, right); // then merge the single element arrays into ong big sorted array by calling the above function
+    return merge(left, right); // then merge the final left and right arrays into ong big sorted array by calling the above function
 }
+
+console.log(mergeSort([10,24,76,73]))
